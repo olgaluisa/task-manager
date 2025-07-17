@@ -2,7 +2,7 @@ function App() {
   return (
     <>
       <div>
-        <p>ola</p>
+        <p className="text-amber-950 bg-amber-400">ola</p>
       </div>
     </>
   )
