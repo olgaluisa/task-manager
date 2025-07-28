@@ -1,10 +1,18 @@
 import Button from './Button'
 import { Plus, Trash2, Sunrise, Sun, Moon } from 'react-feather'
 import TasksSeparator from './TasksSeparator'
+import { useState } from 'react'
+import data from '../constants/tasks'
+import TaskItem from './TaskItem'
 
 const Tasks = () => {
+  const [task] = useState(data)
+
+  const morningTasks = task.filter((t) => t.period === 'morning')
+  const afternoonTasks = task.filter((t) => t.period === 'afternoon')
+  const eveningTasks = task.filter((t) => t.period === 'evening')
   return (
-    <section className="w-full px-8 py-16">
+    <section className="w-full space-y-2 px-8 py-16">
       <section className="flex w-full items-center justify-between">
         <div>
           <span className="text-xs font-semibold text-[#00adb5]">
@@ -27,17 +35,23 @@ const Tasks = () => {
       <section className="w-full rounded-xl bg-white p-6">
         <article className="space-y-3">
           <TasksSeparator icon={<Sunrise size={18} />} text={'Manhã'} />
-          <p>Ir para academia</p>
+          {morningTasks.map((task) => (
+            <TaskItem key={task.id} task={task} />
+          ))}
         </article>
 
         <article className="my-6 space-y-3">
           <TasksSeparator icon={<Sun size={18} />} text={'Tarde'} />
-          <p>Trabalhar focada</p>
+          {afternoonTasks.map((task) => (
+            <TaskItem key={task.id} task={task} />
+          ))}
         </article>
 
         <article className="space-y-3">
           <TasksSeparator icon={<Moon size={18} />} text={'Noite'} />
-          <p>Ler</p>
+          {eveningTasks.map((task) => (
+            <TaskItem key={task.id} task={task} />
+          ))}
         </article>
       </section>
     </section>
