@@ -4,6 +4,7 @@ import TasksSeparator from './TasksSeparator'
 import { useState } from 'react'
 import data from '../constants/tasks'
 import TaskItem from './TaskItem'
+import { toast } from 'sonner'
 
 const Tasks = () => {
   const [tasks, setTasks] = useState(data)
@@ -21,6 +22,7 @@ const Tasks = () => {
         return { ...task, status: 'in_progress' }
       }
       if (task.status === 'in_progress') {
+        toast.success('Tarefa concluída!')
         return { ...task, status: 'done' }
       }
       if (task.status === 'done') {
@@ -35,6 +37,7 @@ const Tasks = () => {
   const handleTaskDeleteClick = (taskId) => {
     const newTasks = tasks.filter((task) => task.id !== taskId)
     setTasks(newTasks)
+    toast.success('Tarefa deletada com sucesso!')
   }
 
   const handleDeleteAllTasks = () => {
