@@ -1,6 +1,6 @@
 import { Check, Loader, ExternalLink, Trash2 } from 'react-feather'
 import Button from './Button'
-const TaskItem = ({ task, handleTaskCheckboxClick }) => {
+const TaskItem = ({ task, handleCheckboxClick, handleDeleteClick }) => {
   const getStatusClasses = () => {
     if (task.status === 'done') {
       return 'bg-[#00adb5]/10 text-[#00adb5]'
@@ -28,7 +28,7 @@ const TaskItem = ({ task, handleTaskCheckboxClick }) => {
           <input
             type="checkbox"
             checked={task.status === 'done'}
-            onChange={() => handleTaskCheckboxClick(task.id)}
+            onChange={() => handleCheckboxClick(task.id)}
             className="absolute h-full w-full cursor-pointer opacity-0"
           />
           {task.status === 'done' && <Check className="text-white" />}
@@ -39,13 +39,13 @@ const TaskItem = ({ task, handleTaskCheckboxClick }) => {
         {task.title}
       </div>
       <div className="flex items-center gap-2">
-        <Button variant="ghost">
-          <Trash2 size={20} className="cursor-pointer" />
+        <Button variant="ghost" onClick={() => handleDeleteClick(task.id)}>
+          <Trash2 size={20} className="cursor-pointer text-[#9a9c9f]" />
         </Button>
         <a href="/">
           <ExternalLink
             size={20}
-            className="cursor-pointer text-[#818181] transition hover:opacity-75"
+            className="cursor-pointer text-[#9a9c9f] transition hover:opacity-75"
           />
         </a>
       </div>

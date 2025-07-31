@@ -31,6 +31,15 @@ const Tasks = () => {
     })
     setTasks(newTasks)
   }
+
+  const handleTaskDeleteClick = (taskId) => {
+    const newTasks = tasks.filter((task) => task.id !== taskId)
+    setTasks(newTasks)
+  }
+
+  const handleDeleteAllTasks = () => {
+    setTasks([])
+  }
   return (
     <section className="w-full space-y-6 px-8 py-16">
       <section className="flex w-full items-center justify-between">
@@ -41,7 +50,7 @@ const Tasks = () => {
           <h2 className="text-xl font-semibold">Minhas tarefas</h2>
         </div>
         <div className="flex items-center gap-3">
-          <Button variant="ghost">
+          <Button variant="ghost" onClick={handleDeleteAllTasks}>
             Limpar tarefas
             <Trash2 size={20} />
           </Button>
@@ -59,7 +68,8 @@ const Tasks = () => {
             <TaskItem
               key={task.id}
               task={task}
-              handleTaskCheckboxClick={handleTaskCheckboxClick}
+              handleCheckboxClick={handleTaskCheckboxClick}
+              handleDeleteClick={handleTaskDeleteClick}
             />
           ))}
         </article>
@@ -70,7 +80,8 @@ const Tasks = () => {
             <TaskItem
               key={task.id}
               task={task}
-              handleTaskCheckboxClick={handleTaskCheckboxClick}
+              handleCheckboxClick={handleTaskCheckboxClick}
+              handleDeleteClick={handleTaskDeleteClick}
             />
           ))}
         </article>
@@ -81,7 +92,8 @@ const Tasks = () => {
             <TaskItem
               key={task.id}
               task={task}
-              handleTaskCheckboxClick={handleTaskCheckboxClick}
+              handleCheckboxClick={handleTaskCheckboxClick}
+              handleDeleteClick={handleTaskDeleteClick}
             />
           ))}
         </article>
