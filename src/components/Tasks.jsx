@@ -5,9 +5,11 @@ import { useState } from 'react'
 import data from '../constants/tasks'
 import TaskItem from './TaskItem'
 import { toast } from 'sonner'
+import AddTaskDialog from './AddTaskDialog'
 
 const Tasks = () => {
   const [tasks, setTasks] = useState(data)
+  const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState(false)
 
   const morningTasks = tasks.filter((t) => t.period === 'morning')
   const afternoonTasks = tasks.filter((t) => t.period === 'afternoon')
@@ -57,12 +59,22 @@ const Tasks = () => {
             Limpar tarefas
             <Trash2 size={20} />
           </Button>
-          <Button variant="primary">
+          <Button
+            variant="primary"
+            onClick={() => setAddTaskDialogIsOpen(true)}
+          >
             Nova tarefa
             <Plus size={20} />
           </Button>
         </div>
       </section>
+
+      {addTaskDialogIsOpen && (
+        <AddTaskDialog
+          isOpen={addTaskDialogIsOpen}
+          setIsOpen={setAddTaskDialogIsOpen}
+        />
+      )}
 
       <section className="w-full rounded-xl bg-white p-6">
         <article className="space-y-3">
