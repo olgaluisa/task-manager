@@ -9,7 +9,7 @@ const Button = ({
     if (variant === 'primary') {
       return 'bg-[#00adb5] text-white'
     }
-    if (variant === 'secudary') {
+    if (variant === 'secondary') {
       return 'bg-[#eeeeee] text-[#35383e]'
     }
     if (variant === 'ghost') {

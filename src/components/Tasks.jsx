@@ -72,7 +72,7 @@ const Tasks = () => {
       {addTaskDialogIsOpen && (
         <AddTaskDialog
           isOpen={addTaskDialogIsOpen}
-          hadleClose={() => setAddTaskDialogIsOpen(false)}
+          handleClose={() => setAddTaskDialogIsOpen(false)}
         />
       )}
 

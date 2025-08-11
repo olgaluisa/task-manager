@@ -1,8 +1,9 @@
 import { createPortal } from 'react-dom'
 import Input from './Input'
 import Button from './Button'
+import TimeSelect from './TimeSelect'
 
-const AddTaskDialog = ({ isOpen, hadleClose }) => {
+const AddTaskDialog = ({ isOpen, handleClose }) => {
   if (isOpen)
     return createPortal(
       <div className="fixed top-0 right-0 bottom-0 left-0 z-50 flex items-center justify-center backdrop-blur">
@@ -14,21 +15,21 @@ const AddTaskDialog = ({ isOpen, hadleClose }) => {
           <div className="flex flex-col space-y-4">
             <Input
               id="Titulo"
-              label="Titulo"
+              labelName="Titulo"
               placeholder="Insira o titulo da tarefa"
             />
-            <Input id="time" label="Horário" placeholder="Horário" />
+            <TimeSelect />
             <Input
               id="description"
-              label="Descrição"
+              labelName="Descrição"
               placeholder="Descreva a tarefa"
             />
             <div className="flex items-center gap-3">
               <Button
-                variant="secudary"
+                variant="secondary"
                 size="large"
                 className="w-full"
-                onClick={hadleClose}
+                onClick={handleClose}
               >
                 Cancelar
               </Button>
