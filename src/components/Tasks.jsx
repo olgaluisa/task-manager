@@ -11,9 +11,9 @@ const Tasks = () => {
   const [tasks, setTasks] = useState(data)
   const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState(false)
 
-  const morningTasks = tasks.filter((t) => t.period === 'morning')
-  const afternoonTasks = tasks.filter((t) => t.period === 'afternoon')
-  const eveningTasks = tasks.filter((t) => t.period === 'evening')
+  const morningTasks = tasks.filter((t) => t.time === 'morning')
+  const afternoonTasks = tasks.filter((t) => t.time === 'afternoon')
+  const eveningTasks = tasks.filter((t) => t.time === 'evening')
 
   const handleTaskCheckboxClick = (taskId) => {
     const newTasks = tasks.map((task) => {
@@ -45,6 +45,11 @@ const Tasks = () => {
   const handleDeleteAllTasks = () => {
     setTasks([])
   }
+
+  const handleAddTaskSubmit = (newTask) => {
+    setTasks([...tasks, newTask])
+    toast.success('Tarefa adicionada com sucesso!')
+  }
   return (
     <section className="w-full space-y-6 px-8 py-16">
       <section className="flex w-full items-center justify-between">
@@ -73,6 +78,7 @@ const Tasks = () => {
         <AddTaskDialog
           isOpen={addTaskDialogIsOpen}
           handleClose={() => setAddTaskDialogIsOpen(false)}
+          handleSubmit={handleAddTaskSubmit}
         />
       )}
 
